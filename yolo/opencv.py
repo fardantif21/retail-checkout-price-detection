@@ -2,6 +2,7 @@ from ultralytics import YOLO
 import cv2
 import math
 import random
+import json
 
 classNames = ['Bisconni Chocolate Chip Cookies 46.8gm', 'Coca Cola Can 250ml', 'Colgate Maximum Cavity Protection 75gm',
         'Fanta 250ml', 'Fresher Guava Nectar 500ml', 'Fruita Vitals Red Grapes 200ml',
@@ -14,18 +15,18 @@ classNames = ['Bisconni Chocolate Chip Cookies 46.8gm', 'Coca Cola Can 250ml', '
 
 #cap = cv2.VideoCapture("coba.jpg")
 
-model = YOLO('best.pt')
+model = YOLO("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\best.pt")
 
 
 array = []
-img = cv2.imread("coba.jpg")
-results = model("coba.jpg", show = False)
+img = cv2.imread("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\coba.jpg")
+results = model("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\coba.jpg", show = False)
 for r in results:
     boxes = r.boxes
     for box in boxes:
         x1, y1, x2, y2 = box.xyxy[0]
         x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
-        print(x1, y1, x2, y2)
+        #print(x1, y1, x2, y2)
 
         color1 = random.randrange(128)
         color2 = random.randrange(128)
@@ -50,12 +51,14 @@ for r in array:
     else:
         harga += 100000
 
-print(array)
+#print(array)
+json_string = json.dumps(array)
+print(json.dumps(array))
 
 cv2.putText(img=img, text=f'Total Harga : {harga}', org=(50, 50),
             fontFace=cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(0, 255, 0), thickness=3)
 
-cv2.imshow("Image",img)
-cv2.imwrite("hasil.jpg", img)
+#cv2.imshow("Image",img)
+cv2.imwrite("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\hasil.jpg", img)
 cv2.waitKey(0)
 
