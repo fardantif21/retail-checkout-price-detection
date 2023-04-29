@@ -132,6 +132,32 @@ https://templatemo.com/tm-568-digimedia
         <input type="file" id="selectfile">
         <p id="message_info"></p>
       </div>
+
+      <!-- Button Deteksi -->
+      <?php
+        if(array_key_exists('deteksi', $_POST)) {
+            deteksi();
+        }
+        function deteksi() {
+            // Menjalankan skrip Python dan menangkap outputnya sebagai string
+            //$output = shell_exec("python C:\\xampp\htdocs\\retail-checkout-price-detection\yolo\opencv.py");
+            //echo $output;
+
+            // Mengubah string JSON menjadi array PHP
+            //$arr = json_decode($output);
+
+            $arr = ["Lifebuoy Total Protect Soap 96gm", "Fanta 250ml", "LU Oreo Biscuit 19gm"];
+
+            var_dump($arr);
+        }
+      ?>
+      <br>
+      <div class="container" style="background-color:aliceblue;padding:25px;" id="hasildeteksi">
+        <form method="post">
+        <p><button type="submit" onclick="location.href='#hasildeteksi'" name="deteksi" class="btn btn-primary" value="deteksi"><span class="glyphicon glyphicon-eye-open"></span>  Deteksi</button></p>
+        </form>
+      </div>
+
       <script>
         var fileobj;
         $(document).ready(function(){
