@@ -19,8 +19,8 @@ model = YOLO("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\best.pt"
 
 
 array = []
-img = cv2.imread("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\coba.jpg")
-results = model("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\coba.jpg", show = False)
+img = cv2.imread("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\tes.jpg")
+results = model("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\tes.jpg", show = False)
 for r in results:
     boxes = r.boxes
     for box in boxes:
