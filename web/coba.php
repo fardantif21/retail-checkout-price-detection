@@ -21,7 +21,7 @@
     foreach ($kuantitas as $produk => $jml) {
         //echo "$produk: $jml <br>";
 
-    //query untuk setiap iterasi
+        //query untuk setiap iterasi
         $query = "SELECT * FROM produk WHERE nama='$produk'";
         $result = mysqli_query($conn, $query);
     
