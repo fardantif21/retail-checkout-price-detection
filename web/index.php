@@ -95,7 +95,6 @@ https://templatemo.com/tm-568-digimedia
                     <div class="about-right-content">
                       <div class="section-heading">
                         <h4>DETEKSI JENIS <em>PRODUK</em> UNTUK <em>MENGHITUNG</em> HARGA <em>BELANJAAN</em></h4>
-                        <p>This template is brought to you by TemplateMo website. Feel free to use this for a commercial purpose. You are not allowed to redistribute the template ZIP file on any other template website. Thank you.</p>
                       </div>
                     </div>
                   </div>
