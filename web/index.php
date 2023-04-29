@@ -292,16 +292,22 @@ https://templatemo.com/tm-568-digimedia
                     
                         //proses hasil query
                         while ($row = mysqli_fetch_assoc($result)) {
-                        //tampilkan data hasil query
-                        echo $row['nama'] . " x" . $jml . " " . $row['harga']*$jml . "<br>";
-                        $total += $row['harga'] * $jml;
-                        }
+                          //tampilkan data hasil query
+                          ?>
+                          <div class='card-title'>
+                            <h3 style='text-align:left'><?php echo $row['nama'] . " x" . $jml?></h3>
+                            <h3 style='text-align:right'><?php echo $row['harga']*$jml ?></h3>
+                          </div>
+                          
+                          <?php
+                          $total += $row['harga'] * $jml;
+                          }
 
                     }
 
                     //Menampilkan total harga barang belanjaan
                     echo "Total harga : " . $total; 
-
+                    echo "<div class='card-title'><h3>$total</h3></div>"
                 ?>
                 </div>
               </div>
