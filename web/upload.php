@@ -1,5 +1,5 @@
 <?php
-$folder="upload/";
+$folder="../yolo/";
 if (!file_exists($folder)) {
    mkdir($folder, 0777);
 }
