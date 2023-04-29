@@ -5,20 +5,36 @@
 
     $total = 0;  
 
-    foreach ($arr as $item) {
-        //query untuk setiap iterasi
-        $query = "SELECT * FROM produk WHERE nama='$item'";
+    //membuat kamus untuk menyimpan kuantitas produk
+    $kuantitas = array();
+
+    //looping untuk menghitung kuantitas produk
+    foreach ($arr as $produk) {
+    if (array_key_exists($produk, $kuantitas)) {
+        $kuantitas[$produk] += 1;
+    } else {
+        $kuantitas[$produk] = 1;
+    }
+    }
+
+    //menampilkan kuantitas produk
+    foreach ($kuantitas as $produk => $jml) {
+        //echo "$produk: $jml <br>";
+
+    //query untuk setiap iterasi
+        $query = "SELECT * FROM produk WHERE nama='$produk'";
         $result = mysqli_query($conn, $query);
     
         //proses hasil query
         while ($row = mysqli_fetch_assoc($result)) {
         //tampilkan data hasil query
-        echo $row['nama'] . " " . $row['harga'] . "<br>";
-        $total += $row['harga'];
+        echo $row['nama'] . " x" . $jml . " " . $row['harga']*$jml . "<br>";
+        $total += $row['harga'] * $jml;
         }
+
     }
 
-    //Menghitung total harga barang belanjaan
+    //Menampilkan total harga barang belanjaan
     echo "Total harga : " . $total; 
 
 ?>
