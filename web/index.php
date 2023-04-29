@@ -5,6 +5,7 @@
   session_start();
 
   $_SESSION["detect_status"] = false;
+  $_SESSION["arr"] = [];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -147,9 +148,9 @@ https://templatemo.com/tm-568-digimedia
             //echo $output;
 
             // Mengubah string JSON menjadi array PHP
-            //$arr = json_decode($output);
+            //$_SESSION["arr"] = json_decode($output);
 
-            $arr = ["Lifebuoy Total Protect Soap 96gm", "Fanta 250ml", "LU Oreo Biscuit 19gm"];
+            $_SESSION["arr"] = ["Lifebuoy Total Protect Soap 96gm", "Fanta 250ml", "LU Oreo Biscuit 19gm"];
 
             $_SESSION["detect_status"] = true;
         }
@@ -263,6 +264,45 @@ https://templatemo.com/tm-568-digimedia
               <div class="card">
                 <div class="card-body" style="height: 350px;">
                   <div class="card-title"><h3>Detail</h3></div>
+                  <?php 
+                    $conn = mysqli_connect("localhost","root","","data");
+
+
+                    $total = 0;  
+
+                    //membuat kamus untuk menyimpan kuantitas produk
+                    $kuantitas = array();
+
+                    //looping untuk menghitung kuantitas produk
+                    foreach ($_SESSION["arr"] as $produk) {
+                        if (array_key_exists($produk, $kuantitas)) {
+                            $kuantitas[$produk] += 1;
+                        } else {
+                            $kuantitas[$produk] = 1;
+                        }
+                    }
+
+                    //menampilkan kuantitas produk
+                    foreach ($kuantitas as $produk => $jml) {
+                        //echo "$produk: $jml <br>";
+
+                        //query untuk setiap iterasi
+                        $query = "SELECT * FROM produk WHERE nama='$produk'";
+                        $result = mysqli_query($conn, $query);
+                    
+                        //proses hasil query
+                        while ($row = mysqli_fetch_assoc($result)) {
+                        //tampilkan data hasil query
+                        echo $row['nama'] . " x" . $jml . " " . $row['harga']*$jml . "<br>";
+                        $total += $row['harga'] * $jml;
+                        }
+
+                    }
+
+                    //Menampilkan total harga barang belanjaan
+                    echo "Total harga : " . $total; 
+
+                ?>
                 </div>
               </div>
             </div>
