@@ -70,6 +70,7 @@ https://templatemo.com/tm-568-digimedia
               <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
               <li class="scroll-to-section"><a href="#deteksi">Deteksi</a></li>
               <li class="scroll-to-section"><a href="#about">About</a></li>
+	      <li class="scroll-to-section"><a href="#"></a></li>
             </ul>        
             <a class='menu-trigger'>
                 <span>Menu</span>
