@@ -209,7 +209,7 @@ https://templatemo.com/tm-568-digimedia
       <div class="container" style="margin-top: 100px;">   
         <div class="col-md-8 col-sm-6 mb-3">
           <div class="card">
-            <img src="gambar1.jpg" class="card-img-top" alt="..." style="height: 310px;">
+            <img src="../yolo/hasil.jpg" class="card-img-top" alt="...">
        
             <div class="card-body">
               <div class="card-title"><h4>Hasil Deteksi Produk</h4></div>
