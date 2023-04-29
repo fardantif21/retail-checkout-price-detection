@@ -10,11 +10,11 @@
 
     //looping untuk menghitung kuantitas produk
     foreach ($arr as $produk) {
-    if (array_key_exists($produk, $kuantitas)) {
-        $kuantitas[$produk] += 1;
-    } else {
-        $kuantitas[$produk] = 1;
-    }
+        if (array_key_exists($produk, $kuantitas)) {
+            $kuantitas[$produk] += 1;
+        } else {
+            $kuantitas[$produk] = 1;
+        }
     }
 
     //menampilkan kuantitas produk
