@@ -1,7 +1,10 @@
 <?php 
 	require_once "connection.php";
-	//Query sql
-	$sql="SELECT * FROM produk";
+
+  // Start the session
+  session_start();
+
+  $_SESSION["detect_status"] = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +22,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="style.css" rel="stylesheet">
     
-    <title>DigiMedia - Creative SEO HTML5 Template</title>
+    <title>Deteksi Harga Produk</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -148,13 +151,25 @@ https://templatemo.com/tm-568-digimedia
 
             $arr = ["Lifebuoy Total Protect Soap 96gm", "Fanta 250ml", "LU Oreo Biscuit 19gm"];
 
-            var_dump($arr);
+            $_SESSION["detect_status"] = true;
+        }
+        
+        //Reset
+        $nama_file = "C:\\xampp\htdocs\\retail-checkout-price-detection\\yolo\\tes.jpg";
+        if (isset($_POST['hapus'])) {
+          //hapus file gambar
+          if (unlink($nama_file)) {
+            echo "File berhasil dihapus.";
+          } else {
+            echo "File gagal dihapus.";
+          }
         }
       ?>
       <br>
       <div class="container" style="background-color:aliceblue;padding:25px;" id="hasildeteksi">
         <form method="post">
-        <p><button type="submit" onclick="location.href='#hasildeteksi'" name="deteksi" class="btn btn-primary" value="deteksi"><span class="glyphicon glyphicon-eye-open"></span>  Deteksi</button></p>
+          <p><button type="submit" onclick="location.href='#hasildeteksi'" name="deteksi" class="btn btn-primary" value="deteksi"><span class="glyphicon glyphicon-eye-open"></span>  Deteksi</button></p>
+          <p><button type="submit" onclick="location.href='#hasildeteksi'" name="reset" class="btn btn-danger" value="hapus"><span class="glyphicon glyphicon-eye-open"></span>  Reset</button></p>
         </form>
       </div>
 
@@ -231,27 +246,34 @@ https://templatemo.com/tm-568-digimedia
       </script>
 
     </div>
+    
+    <?php
+        if ($_SESSION['detect_status'] == true){?>  
+          <div class="container" style="margin-top: 100px;">   
+            <div class="col-md-8 col-sm-6 mb-3">
+              <div class="card">
+                <img src="http://localhost//retail-checkout-price-detection//yolo//hasil.jpg" class="card-img-top" alt="Hasil Deteksi Produk">            
+                <div class="card-body">
+                  <div class="card-title"><h4>Hasil Deteksi Produk</h4></div>
+                </div>
+              </div>
+            </div>
+          
+            <div class="col-md-4 col-sm-6 mb-3">
+              <div class="card">
+                <div class="card-body" style="height: 350px;">
+                  <div class="card-title"><h3>Detail</h3></div>
+                </div>
+              </div>
+            </div>
+          </div> 
+        <?php
+          } 
+        ?> 
 
-      <div class="container" style="margin-top: 100px;">   
-        <div class="col-md-8 col-sm-6 mb-3">
-          <div class="card">
-            <img src="gambar1.jpg" class="card-img-top" alt="..." style="height: 310px;">
-       
-            <div class="card-body">
-              <div class="card-title"><h4>Hasil Deteksi Produk</h4></div>
-            </div>
-          </div>
-        </div>
-       
-        <div class="col-md-4 col-sm-6 mb-3">
-          <div class="card">
-            <div class="card-body" style="height: 350px;">
-              <div class="card-title"><h3>Detail</h3></div>
-               
-            </div>
-          </div>
-        </div>
-      </div>
+        
+
+
     </div>
   </div>
 
