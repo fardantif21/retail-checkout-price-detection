@@ -221,7 +221,7 @@ https://templatemo.com/tm-568-digimedia
           <div class="card">
             <div class="card-body" style="height: 350px;">
               <div class="card-title"><h3>Detail</h3></div>
-              Selamat datang di tutorial bootstrap 4 lengkap dari paling dasar sampai mahir, untuk pemula sampai expert.
+               
             </div>
           </div>
         </div>
