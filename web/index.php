@@ -255,7 +255,7 @@ https://templatemo.com/tm-568-digimedia
               <div class="card">
                 <img src="http://localhost//retail-checkout-price-detection//yolo//hasil.jpg?t=<?php echo time() ?>" class="card-img-top" alt="Hasil Deteksi Produk">            
                 <div class="card-body">
-                  <div class="card-title"><h4>Hasil Deteksi Produks</h4></div>
+                  <div class="card-title"><h4>Hasil Deteksi Produk</h4></div>
                 </div>
               </div>
             </div>
@@ -263,52 +263,56 @@ https://templatemo.com/tm-568-digimedia
             <div class="col-md-4 col-sm-6 mb-3">
               <div class="card">
                 <div class="card-body" style="height: 350px;">
-                  <div class="card-title"><h3>Detail</h3></div>
-                  <?php 
-                    $conn = mysqli_connect("localhost","root","","data");
+                  <div class="card-title" style="padding:15px"><h3>Detail</h3></div>
+                    <div class='card-title'>
+                      <table class="table" width="90%" align="center" cellspacing="0">
+                        <tbody>
+                          <?php 
+                            $conn = mysqli_connect("localhost","root","","data");
 
 
-                    $total = 0;  
+                            $total = 0;  
 
-                    //membuat kamus untuk menyimpan kuantitas produk
-                    $kuantitas = array();
+                            //membuat kamus untuk menyimpan kuantitas produk
+                            $kuantitas = array();
 
-                    //looping untuk menghitung kuantitas produk
-                    foreach ($_SESSION["arr"] as $produk) {
-                        if (array_key_exists($produk, $kuantitas)) {
-                            $kuantitas[$produk] += 1;
-                        } else {
-                            $kuantitas[$produk] = 1;
-                        }
-                    }
+                            //looping untuk menghitung kuantitas produk
+                            foreach ($_SESSION["arr"] as $produk) {
+                                if (array_key_exists($produk, $kuantitas)) {
+                                    $kuantitas[$produk] += 1;
+                                } else {
+                                    $kuantitas[$produk] = 1;
+                                }
+                            }
 
-                    //menampilkan kuantitas produk
-                    foreach ($kuantitas as $produk => $jml) {
-                        //echo "$produk: $jml <br>";
+                            //menampilkan kuantitas produk
+                            foreach ($kuantitas as $produk => $jml) {
+                                //echo "$produk: $jml <br>";
 
-                        //query untuk setiap iterasi
-                        $query = "SELECT * FROM produk WHERE nama='$produk'";
-                        $result = mysqli_query($conn, $query);
-                    
-                        //proses hasil query
-                        while ($row = mysqli_fetch_assoc($result)) {
-                          //tampilkan data hasil query
-                          ?>
-                          <div class='card-title'>
-                            <h3 style='text-align:left'><?php echo $row['nama'] . " x" . $jml?></h3>
-                            <h3 style='text-align:right'><?php echo $row['harga']*$jml ?></h3>
-                          </div>
-                          
-                          <?php
-                          $total += $row['harga'] * $jml;
-                          }
+                                //query untuk setiap iterasi
+                                $query = "SELECT * FROM produk WHERE nama='$produk'";
+                                $result = mysqli_query($conn, $query);
+                            
+                                //proses hasil query
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                  //tampilkan data hasil query
+                                  ?>
+                                        <tr padding="0" height="40">
+                                          <th class="text-black pl-5 pr-5" ><?php echo $row['nama']?></th>
+                                          <th class="text-black pl-5 pr-5">x<?php echo $jml?></th>
+                                          <th class="text-black pl-5 pr-5"><?php echo $row['harga']*$jml?></th>
+                                        </tr>
+                                  <?php
+                                  $total += $row['harga'] * $jml;
+                                  }
 
-                    }
+                            }?>
 
-                    //Menampilkan total harga barang belanjaan
-                    echo "Total harga : " . $total; 
-                    echo "<div class='card-title'><h3>$total</h3></div>"
-                ?>
+                        </tbody>
+                      </table>
+                      <?php //Menampilkan total harga barang belanjaan
+                            echo "<div class='card-title'><h3> Total Harga : $total</h3></div>";?>
+                    </div>
                 </div>
               </div>
             </div>
