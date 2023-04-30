@@ -150,7 +150,7 @@ https://templatemo.com/tm-568-digimedia
             // Mengubah string JSON menjadi array PHP
             //$_SESSION["arr"] = json_decode($output);
 
-            $_SESSION["arr"] = ["Lifebuoy Total Protect Soap 96gm", "Fanta 250ml", "LU Oreo Biscuit 19gm"];
+            //$_SESSION["arr"] = ["Lifebuoy Total Protect Soap 96gm", "Fanta 250ml", "LU Oreo Biscuit 19gm"];
 
             $_SESSION["detect_status"] = true;
         }
@@ -253,9 +253,9 @@ https://templatemo.com/tm-568-digimedia
           <div class="container" style="margin-top: 100px;">   
             <div class="col-md-8 col-sm-6 mb-3">
               <div class="card">
-                <img src="http://localhost//retail-checkout-price-detection//yolo//hasil.jpg" class="card-img-top" alt="Hasil Deteksi Produk">            
+                <img src="http://localhost//retail-checkout-price-detection//yolo//hasil.jpg?t=<?php echo time() ?>" class="card-img-top" alt="Hasil Deteksi Produk">            
                 <div class="card-body">
-                  <div class="card-title"><h4>Hasil Deteksi Produk</h4></div>
+                  <div class="card-title"><h4>Hasil Deteksi Produks</h4></div>
                 </div>
               </div>
             </div>

@@ -20,7 +20,17 @@ model = YOLO("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\best.pt"
 
 array = []
 img = cv2.imread("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\tes.jpg")
-results = model("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\tes.jpg", show = False)
+
+scale_percent = 60 # percent of original size
+#width = int(img.shape[1] * scale_percent / 100)
+#height = int(img.shape[0] * scale_percent / 100)
+width = int(640)
+height = int(640)
+dim = (width, height)
+
+resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+
+results = model(resized, show = False)
 for r in results:
     boxes = r.boxes
     for box in boxes:
@@ -28,17 +38,17 @@ for r in results:
         x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
         #print(x1, y1, x2, y2)
 
-        color1 = random.randrange(128)
-        color2 = random.randrange(128)
-        color3 = random.randrange(128)
+        color1 = random.randrange(128, 255)
+        color2 = random.randrange(128, 255)
+        color3 = random.randrange(128, 255)
 
-        cv2.rectangle(img,(x1,y1),(x2,y2),(color1,color2, color3),3)
+        cv2.rectangle(resized,(x1,y1),(x2,y2),(color1,color2, color3),3)
 
         conf = math.ceil((box.conf[0]*100))/100
 
         cls = int(box.cls[0])
 
-        cv2.putText(img=img, text=f'{classNames[cls]} {conf}', org=(max(0,x1), max(35,y1)-5),
+        cv2.putText(img=resized, text=f'{classNames[cls]} {conf}', org=(max(0,x1), max(35,y1)-5),
                     fontFace=cv2.FONT_HERSHEY_DUPLEX,fontScale=0.5, color=(color1, color2, color3), thickness=2)
         array.append(classNames[cls])
 
@@ -55,10 +65,10 @@ for r in array:
 json_string = json.dumps(array)
 print(json.dumps(array))
 
-cv2.putText(img=img, text=f'Total Harga : {harga}', org=(50, 50),
-            fontFace=cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(0, 255, 0), thickness=3)
+# cv2.putText(img=img, text=f'Total Harga : {harga}', org=(50, 50),
+#             fontFace=cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(0, 255, 0), thickness=3)
 
 #cv2.imshow("Image",img)
-cv2.imwrite("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\hasil.jpg", img)
+cv2.imwrite("C:\\xampp\\htdocs\\retail-checkout-price-detection\\yolo\\hasil.jpg", resized)
 cv2.waitKey(0)
 
