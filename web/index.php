@@ -150,7 +150,7 @@ https://templatemo.com/tm-568-digimedia
             // Mengubah string JSON menjadi array PHP
             //$_SESSION["arr"] = json_decode($output);
 
-            //$_SESSION["arr"] = ["Lifebuoy Total Protect Soap 96gm", "Fanta 250ml", "LU Oreo Biscuit 19gm"];
+            $_SESSION["arr"] = ["Lifebuoy Total Protect Soap 96gm", "Fanta 250ml", "LU Oreo Biscuit 19gm"];
 
             $_SESSION["detect_status"] = true;
         }
